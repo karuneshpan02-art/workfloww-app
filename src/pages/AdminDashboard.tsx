@@ -394,12 +394,26 @@ const AdminDashboard: React.FC = () => {
                   </thead>
                   <tbody>
                     {[...employees].sort((a, b) => {
-                      const countA = tasks.filter(t => t.assignedTo?._id === a._id && t.status === 'Completed').length;
-                      const countB = tasks.filter(t => t.assignedTo?._id === b._id && t.status === 'Completed').length;
+                      const countA = tasks.filter(t =>
+                      t.assignedTo?._id === a._id &&
+                      (t.status === 'Completed' || t.status === 'Approved')
+                      ).length;
+
+                      const countB = tasks.filter(t =>
+                      t.assignedTo?._id === b._id &&
+                      (t.status === 'Completed' || t.status === 'Approved')
+                      ).length;
                       return countB - countA;
                     }).slice(0, 5).map(emp => {
-                      const activeCount = tasks.filter(t => t.assignedTo?._id === emp._id && t.status !== 'Completed').length;
-                      const completedCount = tasks.filter(t => t.assignedTo?._id === emp._id && t.status === 'Completed').length;
+                      const activeCount = tasks.filter(t =>
+                      t.assignedTo?._id === emp._id &&
+                      (t.status === 'Pending' || t.status === 'In Progress')
+                      ).length;
+
+                      const completedCount = tasks.filter(t =>
+                      t.assignedTo?._id === emp._id &&
+                      (t.status === 'Completed' || t.status === 'Approved')
+                      ).length;
                       const isBusy = activeCount >= 3;
                       return (
                         <tr key={emp._id}>
@@ -654,7 +668,10 @@ const AdminDashboard: React.FC = () => {
                   >
                     <option value="">Select Employee</option>
                     {employees.map(emp => {
-                      const activeCount = tasks.filter(t => t.assignedTo?._id === emp._id && t.status !== 'Completed').length;
+                      const activeCount = tasks.filter(t =>
+                      t.assignedTo?._id === emp._id &&
+                     (t.status === 'Pending' || t.status === 'In Progress')
+                      ).length;
                       const isBusy = activeCount >= 3;
                       return (
                         <option key={emp._id} value={emp.employeeId} disabled={isBusy}>
