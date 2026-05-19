@@ -1,0 +1,50 @@
+@startuml
+
+entity User {
+  +_id : ObjectId
+  --
+  name : String
+  email : String
+  password : String
+  role : String
+  employeeId : String
+  createdAt : Date
+}
+
+entity Task {
+  +_id : ObjectId
+  --
+  title : String
+  description : String
+  priority : String
+  deadline : Date
+  status : String
+  response : String
+  assignedTo : ObjectId
+  createdBy : ObjectId
+  createdAt : Date
+}
+
+entity Admin {
+  +_id : ObjectId
+  --
+  name : String
+  email : String
+}
+
+entity TaskLog {
+  +_id : ObjectId
+  --
+  taskId : ObjectId
+  action : String
+  updatedBy : ObjectId
+  timestamp : Date
+}
+
+' Relationships
+User ||--o{ Task : "assignedTo"
+Admin ||--o{ Task : "creates"
+Task ||--o{ TaskLog : "logs"
+User ||--o{ TaskLog : "updates"
+
+@enduml

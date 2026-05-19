@@ -17,7 +17,7 @@ const LandingPage: React.FC = () => {
           <Row className="align-items-center">
             <Col lg={6}>
               <h1 className="display-3 fw-bold mb-4 animate__animated animate__fadeInLeft">
-                Streamline Your Workflow
+                Task Allocation Management
               </h1>
               <p className="lead mb-5 opacity-90 animate__animated animate__fadeInLeft animate__delay-1s">
                 The all-in-one task management platform for modern teams. Assign tasks, track progress, and boost productivity with ease.

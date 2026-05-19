@@ -1,0 +1,87 @@
+<mxfile>
+  <diagram name="Class Diagram">
+    <mxGraphModel>
+      <root>
+        <mxCell id="0"/>
+        <mxCell id="1" parent="0"/>
+
+        <!-- User Class -->
+        <mxCell id="user" value="User
+-----------------------
+_id : ObjectId
+name : String
+email : String
+password : String
+role : String
+employeeId : String
+createdAt : Date
+-----------------------
+register()
+login()" style="shape=rectangle;whiteSpace=wrap;" vertex="1" parent="1">
+          <mxGeometry x="100" y="100" width="220" height="220" as="geometry"/>
+        </mxCell>
+
+        <!-- Task Class -->
+        <mxCell id="task" value="Task
+-----------------------
+_id : ObjectId
+title : String
+description : String
+priority : String
+deadline : Date
+status : String
+response : String
+assignedTo : ObjectId
+createdBy : ObjectId
+createdAt : Date
+-----------------------
+createTask()
+assignTask()
+updateTask()
+approveTask()" style="shape=rectangle;whiteSpace=wrap;" vertex="1" parent="1">
+          <mxGeometry x="420" y="80" width="240" height="280" as="geometry"/>
+        </mxCell>
+
+        <!-- TaskLog Class -->
+        <mxCell id="tasklog" value="TaskLog
+-----------------------
+_id : ObjectId
+taskId : ObjectId
+action : String
+updatedBy : ObjectId
+timestamp : Date
+-----------------------
+logAction()" style="shape=rectangle;whiteSpace=wrap;" vertex="1" parent="1">
+          <mxGeometry x="420" y="400" width="240" height="200" as="geometry"/>
+        </mxCell>
+
+        <!-- Relationships -->
+        <mxCell id="rel1" value="assignedTo" edge="1" parent="1" source="task" target="user">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="rel2" value="createdBy" edge="1" parent="1" source="task" target="user">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="rel3" value="logs" edge="1" parent="1" source="tasklog" target="task">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="rel4" value="updatedBy" edge="1" parent="1" source="tasklog" target="user">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+
+        <!-- Constraints Note -->
+        <mxCell id="note1" value="Constraints:
+- Max 3 tasks per user
+- Unique email & employeeId
+- Valid task status
+- Deadline must be future date" style="shape=note;whiteSpace=wrap;" vertex="1" parent="1">
+          <mxGeometry x="100" y="380" width="250" height="140" as="geometry"/>
+        </mxCell>
+
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
